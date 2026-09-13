@@ -1,0 +1,9 @@
+function num(id){return Number(document.getElementById(id).value)}
+function out(id,html){document.getElementById(id).innerHTML=html}
+function pct(){let a=num('a'),b=num('b'); if(b===0)return out('r','Enter valid numbers.'); out('r',`<strong>${(a/b*100).toFixed(2)}%</strong>`)}
+function marks(){let a=num('a'),b=num('b'); if(b<=0||a<0)return out('r','Enter valid marks.'); out('r',`<strong>${(a/b*100).toFixed(2)}%</strong>`)}
+function required(){let total=num('total'),current=num('current'),target=num('target');if(total<=0||current<0||target<0||target>100)return out('r','Enter valid values.');let need=total*target/100-current;out('r',need<=0?`You already reached ${target}%.`:`You need <strong>${need.toFixed(2)} marks</strong> more.`)}
+function change(){let a=num('a'),b=num('b');if(a===0)return out('r','Original value cannot be zero.');let x=(b-a)/Math.abs(a)*100;out('r',`<strong>${x>=0?'+':''}${x.toFixed(2)}%</strong> ${x>=0?'increase':'decrease'}`)}
+function average(){let s=document.getElementById('marks').value.split(',').map(x=>Number(x.trim())).filter(x=>!Number.isNaN(x));if(!s.length)return out('r','Enter marks separated by commas.');out('r',`Average: <strong>${(s.reduce((a,b)=>a+b,0)/s.length).toFixed(2)}</strong>`)}
+function attendance(){let held=num('held'),att=num('att');if(held<=0||att<0||att>held)return out('r','Enter valid classes.');out('r',`Current attendance: <strong>${(att/held*100).toFixed(2)}%</strong>`)}
+function study(){let days=num('days'),hours=num('hours');if(days<=0||hours<=0)return out('r','Enter valid values.');out('r',`Daily study target: <strong>${(hours/days).toFixed(2)} hours/day</strong>`)}
